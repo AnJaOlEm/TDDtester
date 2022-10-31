@@ -1,7 +1,10 @@
 package org.example.repository;
 
-import kotlin.reflect.jvm.internal.impl.metadata.ProtoBuf;
+
 import org.example.data.User;
+import org.example.exceptions.NoEmailException;
+import org.example.exceptions.TooShortUsernameException;
+import org.example.exceptions.UserAlreadyExistsException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -49,6 +52,20 @@ class InMemoryUserRepositoryTest {
                         new User("Stina", "stinagmail", "123")
                 ),3
         ));
+    }
+
+    static Stream<Arguments> saveUser() {
+        return Stream.of(
+                Arguments.arguments(List.of(
+                        new User("Kalle", "", "123"),
+                        new User("Orvar", "", "123"),
+                        new User("Elin", "elingmail", "123"),
+                        new User("nl", "arvidgmail", "123"),
+                        new User("n", "ingvargmail", "123"),
+                        new User("Kalle", "kallegmail", "123"),
+                        new User("Kalle", "kallegmail", "123")
+                ), 2)
+        );
     }
 
 }

@@ -1,8 +1,10 @@
 package org.example.data;
 
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
+
 public class User {
 
     String userName;
