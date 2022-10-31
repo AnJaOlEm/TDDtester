@@ -57,8 +57,8 @@ class InMemoryUserRepositoryTest {
     static Stream<Arguments> saveUser() {
         return Stream.of(
                 Arguments.arguments(List.of(
-                        new User("Kalle", "", "123"),
-                        new User("Orvar", "", "123"),
+                        new User(null, "", "123"),
+                        new User("ellOr-varniini", "", "123"),
                         new User("Elin", "elingmail", "123"),
                         new User("nl", "arvidgmail", "123"),
                         new User("n", "ingvargmail", "123"),
