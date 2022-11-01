@@ -25,4 +25,16 @@ class InMemoryBlogRepositoryTest {
 
         Assertions.assertEquals(1, blogRepository.getAllBlogPosts().size());
     }
+
+    @Test
+    @DisplayName("Delete blog")
+    void test_delete_blogpost() {
+
+        blogRepository.saveBlogPost(new Blog("Måndag", "Baka kaka hela dagen"));
+        blogRepository.saveBlogPost(new Blog("Tisdag", "Baka kaka hela dagen"));
+
+        blogRepository.deleteBlogPost();
+
+        Assertions.assertEquals(1, blogRepository.getAllBlogPosts().size());
+    }
 }

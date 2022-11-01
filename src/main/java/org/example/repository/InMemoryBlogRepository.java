@@ -17,4 +17,18 @@ public class InMemoryBlogRepository implements BlogRepository{
 
 
 
+    @Override
+    public void saveBlogPost(Blog blog) {
+        data.put(blog.getId(), blog);
+
+    }
+
+
+
+    @Override
+    public Collection<Blog> getAllBlogPosts() {
+        return data.values();
+    }
+
+
 }
