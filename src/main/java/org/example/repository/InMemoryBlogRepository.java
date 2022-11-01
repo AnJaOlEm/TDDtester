@@ -30,5 +30,10 @@ public class InMemoryBlogRepository implements BlogRepository{
         return data.values();
     }
 
+    @Override
+    public void deleteBlogPost(Blog blog) {
+
+    }
+
 
 }

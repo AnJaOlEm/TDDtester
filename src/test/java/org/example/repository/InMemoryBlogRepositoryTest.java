@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.stream.Collectors;
 
 class InMemoryBlogRepositoryTest {
 
@@ -30,11 +30,15 @@ class InMemoryBlogRepositoryTest {
     @DisplayName("Delete blog")
     void test_delete_blogpost() {
 
-        blogRepository.saveBlogPost(new Blog("Måndag", "Baka kaka hela dagen"));
-        blogRepository.saveBlogPost(new Blog("Tisdag", "Baka kaka hela dagen"));
+        var blog = new Blog("kalle","spalle");
+        var blog2 = new Blog("Malle", "balle");
 
-        blogRepository.deleteBlogPost();
+        blogRepository.saveBlogPost(blog);
+        blogRepository.saveBlogPost(blog2);
+
+        blogRepository.deleteBlogPost(blog);
 
         Assertions.assertEquals(1, blogRepository.getAllBlogPosts().size());
+
     }
 }
