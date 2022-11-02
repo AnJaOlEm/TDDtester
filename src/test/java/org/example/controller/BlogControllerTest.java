@@ -3,7 +3,9 @@ package org.example.controller;
 import io.javalin.Javalin;
 import io.javalin.testtools.JavalinTest;
 import org.example.Main;
+import org.example.repository.InMemoryBlogRepository;
 import org.example.repository.InMemoryUserRepository;
+import org.example.service.BlogService;
 import org.example.service.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +18,7 @@ class BlogControllerTest {
         var blogRepository = new InMemoryBlogRepository();
         var blogService = new BlogService(blogRepository);
         var blogController = new BlogController(blogService);
-        var app = Main.createAppBlog(blogController);
+        var app = Main.createBlogApp(blogController, userController);
 
         JavalinTest.test(app, (server, client) -> {
             var code = client.get("/blogs").code();
