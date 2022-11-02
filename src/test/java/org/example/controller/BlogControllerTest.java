@@ -1,8 +1,10 @@
 package org.example.controller;
 
+import com.google.gson.Gson;
 import io.javalin.Javalin;
 import io.javalin.testtools.JavalinTest;
 import org.example.Main;
+import org.example.data.Blog;
 import org.example.repository.InMemoryBlogRepository;
 import org.example.repository.InMemoryUserRepository;
 import org.example.service.BlogService;
@@ -10,6 +12,8 @@ import org.example.service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
 
 class BlogControllerTest {
 
