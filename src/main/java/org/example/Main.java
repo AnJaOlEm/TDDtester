@@ -8,6 +8,20 @@ import org.example.service.UserService;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        var blogRepository = new InMemoryUserRepository();
+        var blogService = new UserService(blogRepository);
+        BlogController blogController = new BlogController(blogService);
+
+        var userRepository = new InMemoryUserRepository();
+        var userService = new UserService(userRepository);
+        UserController userController = new UserController(userService);
+
+        Javalin app = Javalin.create().start(5555);
+
+        app.get("/users", userController.getAllUsers());
+
+
     }
+
+
 }
