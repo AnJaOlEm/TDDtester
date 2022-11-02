@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import com.google.gson.Gson;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import io.javalin.testtools.JavalinTest;
@@ -8,6 +9,8 @@ import org.example.data.User;
 import org.example.repository.InMemoryUserRepository;
 import org.example.service.UserService;
 import org.junit.jupiter.api.*;
+
+import java.util.HashMap;
 
 import static org.mockito.Mockito.*;
 
@@ -32,8 +35,36 @@ class UserControllerTest {
         });
 
 
+    }
 
-        }
+    @Test
+    @DisplayName("Test save user")
+    void test_save_user() {
+        var repository = new InMemoryUserRepository();
+        var service = new  UserService(repository);
+        var userController = new UserController(service);
+        var app = Main.createUserApp(userController);
+
+        JavalinTest.test(app, (server, client) -> {
+            var map = new HashMap<>();
+            map.put("userName", "Kalle");
+            map.put("email", "k@gma.com");
+            map.put("password", "123");
+
+            var gson = new Gson();
+            var user = new User("Kalle", "k@gma.com", "123");
+            var output = gson.toJson(user);
+
+            var res = client.put("/user", map);
+            var code = res.code();
+            var body = res.body();
+
+            Assertions.assertEquals(200, code);
+            Assertions.assertEquals(output, body.string());
+        });
+    }
+
+
 
 }
 

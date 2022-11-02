@@ -26,7 +26,7 @@ public class Main {
     public static Javalin createUserApp(UserController userController) {
         var app1 = Javalin.create()
                 .get("/users", userController::getAllUsers)
-                .get("/user", userController::saveUser);
+                .put("/user", userController::saveUser);
 
         return app1;
     }
