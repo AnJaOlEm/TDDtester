@@ -7,6 +7,7 @@ import org.example.repository.InMemoryBlogRepository;
 import org.example.repository.InMemoryUserRepository;
 import org.example.service.BlogService;
 import org.example.service.UserService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,9 @@ class BlogControllerTest {
         JavalinTest.test(app, (server, client) -> {
             var code = client.get("/blogs").code();
             var body = client.get("/blogs").body().string();
+
+            Assertions.assertEquals(200, code);
+            Assertions.assertEquals("[]", body);
         });
     }
 
