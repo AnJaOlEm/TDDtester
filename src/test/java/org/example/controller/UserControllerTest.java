@@ -19,8 +19,8 @@ class UserControllerTest {
 
         var repository = new InMemoryUserRepository();
         var service = new  UserService(repository);
-        var controller = new UserController(service);
-        var app = Main.createApp(controller);
+        var userController = new UserController(service);
+        var app = Main.createUserApp(userController);
 
         JavalinTest.test(app, (server , client) -> {
             client.get("/users");
@@ -33,6 +33,7 @@ class UserControllerTest {
 
 
 
-}
+        }
 
 }
+

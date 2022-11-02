@@ -10,18 +10,18 @@ import org.junit.jupiter.api.Test;
 
 class BlogControllerTest {
 
-    @Test
-    @DisplayName("Test that an empty list returns")
-    void get_blogs_test() {
-        var blogRepository = new InMemoryUserRepository();
-        var blogService = new UserService(blogRepository);
-        var blogController = new BlogController(blogService);
-        var app = Main.createAppBlog(blogController);
-
-        JavalinTest.test(app, (server, client) -> {
-            var code = client.get("/blogs").code();
-            var body = client.get("/blogs").body().string();
-        });
-    }
+//    @Test
+//    @DisplayName("Test that an empty list returns")
+//    void get_blogs_test() {
+//        var blogRepository = new InMemoryUserRepository();
+//        var blogService = new UserService(blogRepository);
+//        var blogController = new BlogController(blogService);
+//        var app = Main.createAppBlog(blogController);
+//
+//        JavalinTest.test(app, (server, client) -> {
+//            var code = client.get("/blogs").code();
+//            var body = client.get("/blogs").body().string();
+//        });
+//    }
 
 }
