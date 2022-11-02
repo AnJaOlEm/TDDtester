@@ -23,7 +23,7 @@ class UserControllerTest {
         var repository = new InMemoryUserRepository();
         var service = new  UserService(repository);
         var userController = new UserController(service);
-        var app = Main.createUserApp(userController);
+        var app = Main.createBlogApp(blogController, userController);
 
         JavalinTest.test(app, (server , client) -> {
             client.get("/users");
@@ -40,10 +40,14 @@ class UserControllerTest {
     @Test
     @DisplayName("Test save user")
     void test_save_user() {
+        var blogRepository = new InMemoryBlogRepository();
+        var blogService = new BlogService(blogRepository);
+        var blogController = new BlogController(blogService);
+
         var repository = new InMemoryUserRepository();
         var service = new  UserService(repository);
         var userController = new UserController(service);
-        var app = Main.createUserApp(userController);
+        var app = Main.createBlogApp(blogController, userController);
 
         JavalinTest.test(app, (server, client) -> {
             var map = new HashMap<>();
@@ -62,6 +66,8 @@ class UserControllerTest {
             Assertions.assertEquals(200, code);
             Assertions.assertEquals(output, body.string());
         });
+
+        app.close();
     }
 
 

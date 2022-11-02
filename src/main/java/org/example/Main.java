@@ -3,14 +3,16 @@ package org.example;
 import io.javalin.Javalin;
 import org.example.controller.BlogController;
 import org.example.controller.UserController;
+import org.example.repository.InMemoryBlogRepository;
 import org.example.repository.InMemoryUserRepository;
+import org.example.service.BlogService;
 import org.example.service.UserService;
 
 public class Main {
     public static void main(String[] args) {
-//        var blogRepository = new InMemoryUserRepository();
-//        var blogService = new UserService(blogRepository);
-//        BlogController blogController = new BlogController(blogService);
+        var blogRepository = new InMemoryBlogRepository();
+        var blogService = new BlogService(blogRepository);
+        BlogController blogController = new BlogController(blogService);
 
         var userRepository = new InMemoryUserRepository();
         var userService = new UserService(userRepository);
@@ -18,23 +20,23 @@ public class Main {
 
 
 
-        createUserApp(userController).start(5000);
+        createBlogApp(blogController, userController).start(5000);
 
 
     }
 
-    public static Javalin createUserApp(UserController userController) {
-        var app1 = Javalin.create()
+
+
+    public static Javalin createBlogApp(BlogController blogController, UserController userController) {
+        var app2 = Javalin.create()
+                .get("/blogs", blogController::getAllBlogPosts)
+                .put("/blog", blogController::saveBlogPost)
+                .delete("/blog", blogController::deleteBlogPost)
                 .get("/users", userController::getAllUsers)
                 .put("/user", userController::saveUser);
+        return app2;
 
-        return app1;
     }
-
-//    public static Javalin createBlogApp(BlogController blogController) {
-//        var app2 = Javalin.create()
-//                .get("/blogs", blogController::get)
-//    }
 
 
 }
