@@ -28,13 +28,13 @@ public class Main {
 
 
     public static Javalin createBlogApp(BlogController blogController, UserController userController) {
-        var app2 = Javalin.create()
+        var app = Javalin.create()
                 .get("/blogs", blogController::getAllBlogPosts)
                 .put("/blog", blogController::saveBlogPost)
                 .delete("/blog", blogController::deleteBlogPost)
                 .get("/users", userController::getAllUsers)
                 .put("/user", userController::saveUser);
-        return app2;
+        return app;
 
     }
 
