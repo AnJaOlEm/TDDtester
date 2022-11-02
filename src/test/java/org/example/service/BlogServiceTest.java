@@ -2,9 +2,7 @@ package org.example.service;
 
 import org.example.data.Blog;
 import org.example.repository.BlogRepository;
-import org.example.repository.UserRepository;
 import org.junit.jupiter.api.*;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;

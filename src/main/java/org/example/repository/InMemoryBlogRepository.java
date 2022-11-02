@@ -23,8 +23,6 @@ public class InMemoryBlogRepository implements BlogRepository{
 
     }
 
-
-
     @Override
     public Collection<Blog> getAllBlogPosts() {
         return data.values();

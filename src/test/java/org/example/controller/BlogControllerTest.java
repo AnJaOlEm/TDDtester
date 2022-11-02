@@ -1,7 +1,6 @@
 package org.example.controller;
 
 import com.google.gson.Gson;
-import io.javalin.Javalin;
 import io.javalin.testtools.JavalinTest;
 import org.example.Main;
 import org.example.data.Blog;

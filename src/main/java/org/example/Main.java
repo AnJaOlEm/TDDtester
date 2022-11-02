@@ -18,14 +18,9 @@ public class Main {
         var userService = new UserService(userRepository);
         UserController userController = new UserController(userService);
 
-
-
         createBlogApp(blogController, userController).start(5000);
 
-
     }
-
-
 
     public static Javalin createBlogApp(BlogController blogController, UserController userController) {
         var app = Javalin.create()
